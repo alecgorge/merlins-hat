@@ -1,0 +1,17 @@
+{
+  "name": "merlins-hat-example",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.coffee",
+  "scripts": {
+    "start": "./node_modules/.bin/coffee server.coffee"
+  },
+  "author": "Alec Gorge",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.7.1",
+    "express": "^4.6.1",
+    "merlins-hat": "^0.1.0"
+  }
+}

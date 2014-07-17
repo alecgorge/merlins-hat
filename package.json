@@ -1,0 +1,36 @@
+{
+  "name": "merlins-hat",
+  "version": "0.1.0",
+  "description": "Express middleware to resize images and cache the results",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "coffee --map --bare --compile --output lib/ src/*.coffee",
+    "prepublish": "coffee --map --bare --compile --output lib/ src/*.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alecgorge/merlins-hat.git"
+  },
+  "keywords": [
+    "imagick",
+    "gd",
+    "express",
+    "images",
+    "resizing"
+  ],
+  "author": "Alec Gorge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alecgorge/merlins-hat/issues"
+  },
+  "homepage": "https://github.com/alecgorge/merlins-hat",
+  "devDependencies": {
+    "coffee-script": "^1.7.1"
+  },
+  "dependencies": {
+    "gm": "^1.16.0",
+    "request": "^2.37.0",
+    "temp": "^0.8.0"
+  }
+}
