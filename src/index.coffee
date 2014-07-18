@@ -30,7 +30,7 @@ merlin = (store_key, fetch_key, delete_key) ->
 
     send_response = (merlinResponse) ->
       res.setHeader 'Content-Type', "image/jpeg"
-      res.setHeader "Contet-Length", merlinResponse.size
+      res.setHeader "Content-Length", merlinResponse.size
       merlinResponse.readStream.pipe res      
 
     fetch_key key, (fetchResponse) ->
