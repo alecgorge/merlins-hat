@@ -29,6 +29,7 @@ merlin = (store_key, fetch_key, delete_key) ->
     key = md5 url + w + h + q
 
     send_response = (merlinResponse) ->
+      res.setHeader 'Cache-Control', 'max-age=31556926'
       res.setHeader 'Content-Type', "image/jpeg"
       res.setHeader "Content-Length", merlinResponse.size
       merlinResponse.readStream.pipe res      
