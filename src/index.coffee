@@ -45,28 +45,32 @@ merlin = (store_key, fetch_key, delete_key) ->
           ws = fs.createWriteStream temp_dl
 
           # download image to temp file
-          request(url).pipe(ws).on 'close', ->
-            g = gm info.path
-            g.quality q
-            g.resize w, h
-            g.autoOrient()
+          try
+            request(url).pipe(ws).on 'close', ->
+              g = gm info.path
+              g.quality q
+              g.resize w, h
+              g.autoOrient()
 
-            store_key key, (storeResponse) ->
-              p = g.stream('jpeg')
-              p.pipe(storeResponse.writeStream).on 'close', (err) ->
-                fs.unlink temp_dl, (err) ->
-                  throw err if err
+              store_key key, (storeResponse) ->
+                p = g.stream('jpeg')
+                p.pipe(storeResponse.writeStream).on 'close', (err) ->
+                  fs.unlink temp_dl, (err) ->
+                    throw err if err
 
-                if err
-                  delete_key key, ->
-                    console.log err
-                    throw err
-                else
-                  fetch_key key, (fetchResponse) ->
-                    if fetchResponse.exists
-                      send_response fetchResponse
-                    else
-                      res.send 404
+                  if err
+                    delete_key key, ->
+                      console.log err
+                      throw err
+                  else
+                    fetch_key key, (fetchResponse) ->
+                      if fetchResponse.exists
+                        send_response fetchResponse
+                      else
+                        res.send 404
+          catch e
+            console.error e
+            res.send 500
 
 module.exports = 
   middleware: merlin
